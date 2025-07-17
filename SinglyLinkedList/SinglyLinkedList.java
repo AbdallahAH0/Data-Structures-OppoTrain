@@ -1,13 +1,13 @@
 package SinglyLinkedList;
 public class SinglyLinkedList {
 
-    private static class Node {
+    private static class Node { //node with a value and it's next 
         Object data;
         Node next;
         Node(Object d, Node n) { data = d; next = n; }
     }
 
-    private Node head;
+    private Node head; //first node in the chain
     private int size;
 
     public SinglyLinkedList() {
@@ -21,7 +21,7 @@ public class SinglyLinkedList {
     public Object get(int index) {
         check(index);
         Node cur = head;
-        for (int i = 0; i < index; i++) cur = cur.next;
+        for (int i = 0; i < index; i++) cur = cur.next; // walk to position
         return cur.data;
     }
 
@@ -29,10 +29,10 @@ public class SinglyLinkedList {
         check(index);
         Node cur = head;
         for (int i = 0; i < index; i++) cur = cur.next;
-        cur.data = element;
+        cur.data = element; //change the value (overwrite)
     }
 
-    public void add(Object element) {
+    public void add(Object element) { //append at tail
         if (head == null) {
             head = new Node(element, null);
         } else {
@@ -43,7 +43,7 @@ public class SinglyLinkedList {
         size++;
     }
 
-    public void insert(int index, Object element) {
+    public void insert(int index, Object element) { //insert anywhere 
         if (index < 0 || index > size) throw new IndexOutOfBoundsException();
         if (index == 0) {
             head = new Node(element, head);
@@ -55,23 +55,23 @@ public class SinglyLinkedList {
         size++;
     }
 
-    public Object remove(int index) {
+    public Object remove(int index) { //delete node
         check(index);
         Object removed;
         if (index == 0) {
             removed = head.data;
-            head = head.next;
+            head = head.next; //move head forward 
         } else {
             Node prev = head;
             for (int i = 0; i < index - 1; i++) prev = prev.next;
             removed = prev.next.data;
-            prev.next = prev.next.next;
+            prev.next = prev.next.next; //pass target node
         }
         size--;
         return removed;
     }
 
-    private void check(int index) {
+    private void check(int index) { //bounds check 
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
     }
 

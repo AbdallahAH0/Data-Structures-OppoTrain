@@ -2,10 +2,10 @@ package ArrayStack;
 public class ArrayStack {
 
     private Object[] data;
-    private int top;
+    private int top; //index of next free slot also it's the current size
 
     public ArrayStack() {
-        data = new Object[4];
+        data = new Object[4]; 
         top = 0;
     }
 
@@ -13,24 +13,24 @@ public class ArrayStack {
     public boolean isEmpty() { return top == 0; }
 
     public void push(Object v) {
-        if (top == data.length) grow();
-        data[top++] = v;
+        if (top == data.length) grow(); //resize when full
+        data[top++] = v; // store then advance top 
     }
 
     public Object peek() {
         if (isEmpty()) throw new IllegalStateException();
-        return data[top - 1];
+        return data[top - 1]; //last pushed element
     }
 
     public Object pop() {
         if (isEmpty()) throw new IllegalStateException();
-        Object v = data[--top];
-        data[top] = null;
+        Object v = data[--top]; //step back and then read
+        data[top] = null; //avoid memory leak
         return v;
     }
 
     private void grow() {
-        Object[] t = new Object[data.length * 2];
+        Object[] t = new Object[data.length * 2]; //double the capacity 
         for (int i = 0; i < data.length; i++) t[i] = data[i];
         data = t;
     }

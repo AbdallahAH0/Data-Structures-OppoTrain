@@ -1,12 +1,14 @@
-
-
 Java Data‑Structure Implementations: 
 -------------------------------------------
-The reposority contains 4 main data structures written in Java: 
+The reposority contains 8 main data structures written in Java: 
 1. Dynamic Array
 2. SinglyLinkedList
 3. ArrayStack
 4. LinkedStack
+5. ArrayQueue
+6. LinkedQueue
+7. DoublyLinkedList
+8. CircularLinkedList
 
 each section will contain the implemenation and the run(Test).
 ----------------------------------------------------------------------------------------------------------------
@@ -15,12 +17,12 @@ the dynamic array is resizble array that can extened and shrink, meaning in can 
 
 *Complexity:
 
-get/set -----> time: O(1), no extra space
-add -----> time : O(1), no extra space
-addpos/ remove ----> time: O(n), because of element shifting, no extra space 
-grow ----> O(n), becuase of copying the old capacity to the new capacity, the space is new capacity – old capacity.
+- get/set -----> time: O(1), no extra space
+- add -----> time : O(1), no extra space
+- addpos/ remove ----> time: O(n), because of element shifting, no extra space 
+- grow ----> O(n), becuase of copying the old capacity to the new capacity, the space is new capacity – old capacity.
 
-total storage: O(n)
+- total storage: O(n)
 
 *Usage example:
  DynamicArray <String> a = new DynamicArray <>();
@@ -36,19 +38,19 @@ total storage: O(n)
 
 *Run: 
 
-javac DynamicArray.java
-java  DynamicArray
+- javac DynamicArray.java
+- java  DynamicArray
 ----------------------------------------------------------------------------------------------------------------
 ### SinglyLinkedList Implementation
 Data structure that contain nodes, where each of these nodes holds a value and a reference to the next node, gives the ability to fast insert/remove at the head and sequential access anywhere.
 
 *Complexity:
 
-add to tail ----> O(n), becuase we need to walk to the tail. the extra is space is the node. 
-insert/remove at head ----> O(1), the extra space is the node also. 
-get/set ----> O(n), there is no extra space.
+- add to tail ----> O(n), becuase we need to walk to the tail. the extra is space is the node. 
+- insert/remove at head ----> O(1), the extra space is the node also. 
+- get/set ----> O(n), there is no extra space.
 
-total storage: O(n), which is the nodes.
+- total storage: O(n), which is the nodes.
 
 *Usage:
 public static void main(String[] args) {
@@ -63,18 +65,18 @@ public static void main(String[] args) {
     }
 
 *Run: 
-javac SinglyLinkedList.java
-java  SinglyLinkedList
+- javac SinglyLinkedList.java
+- java  SinglyLinkedList
 ----------------------------------------------------------------------------------------------------------------
 ### ArrayStack Implementation
 a last in first out stack by a dynamically growing array simple as that.
 
 *Complexity:
 
-push ----> O(1)
-pop/peek -----> O(1)
+- push ----> O(1)
+- pop/peek -----> O(1)
 
-total storage: O(n)
+- total storage: O(n)
 
 *Usage:
 public static void main(String[] args) {
@@ -90,17 +92,17 @@ public static void main(String[] args) {
     }
 
 *Run:
-javac ArrayStack.java
-java  ArrayStack
+- javac ArrayStack.java
+- java  ArrayStack
 ----------------------------------------------------------------------------------------------------------------
 ### LinkedStack Implementation
 a last in first out using a single linkedlist, each push creates a new node at the head.
 
 *Complexity:
 
-push/pop/peak ----> O(1)
+- push/pop/peak ----> O(1)
 
-total storage: O(n), which are the nodes.
+- total storage: O(n), which are the nodes.
 
 *Usage: 
 public static void main(String[] args) {
@@ -116,6 +118,117 @@ public static void main(String[] args) {
     }
 
 *Run:
-javac LinkedStack.java
-java  LinkedStack
+- javac LinkedStack.java
+- java  LinkedStack
+----------------------------------------------------------------------------------------------------------------
+### ArrayQueue Implementation
+First in first out data structure that stores it's element in an array as simple as that. front points to the element to dequeue next, rear points to the next free slot.
+
+*Complexity:
+- enqueue ----> time: O(1), no extra space
+- dequeue/peek ----> time: O(1), no extra space 
+- grow ----> O(n), copies. the space is new capacity – old capacity
+
+- full storage : O(n)
+
+*Usage: 
+public static void main(String[] args) {
+        ArrayQueue q = new ArrayQueue();
+        q.enqueue("A");
+        q.enqueue("B");
+        q.enqueue("C");
+        System.out.println(q.dequeue()); // A
+        q.enqueue("D");
+        while (!q.isEmpty()) System.out.print(q.dequeue() + " "); // B C D
+        System.out.println();
+    }
+
+*Run:
+- javac ArrayQueue.java
+- java  ArrayQueue
+----------------------------------------------------------------------------------------------------------------
+### LinkedQueue Implementation
+First in first out queue using singnly linkedlist wiht head and tail nodes. Enqueue appends at tail; dequeue removes from head.
+
+*Complexity: 
+- enqueue / dequeue / peek -----> time: O(1).
+- Storage is O(n), which is the nodes.
+
+*Usage:
+public static void main(String[] args) {
+        LinkedQueue q = new LinkedQueue();
+        q.enqueue(1);
+        q.enqueue(2);
+        q.enqueue(3);
+        System.out.println(q.peek());   // 1
+        System.out.println(q.dequeue()); // 1
+        q.enqueue(4);
+        while (!q.isEmpty()) System.out.print(q.dequeue() + " "); // 2 3 4
+        System.out.println();
+    }
+
+*Run:
+- javac LinkedQueue.java
+- java  LinkedQueue
+----------------------------------------------------------------------------------------------------------------
+### DoublyLinkedList Implementation
+it a list with 2 ends where each node holds links to both the previous and next node. allowing insertions and deletions at either ends.
+
+*Complexity: 
+- add/remove head or tail ----> time: O(1)
+- insert/remove at index -----> time: O(n)
+- get/set ----> time: O(n)
+
+-Storage: O(n) which is the nodes.
+
+*Usage:
+public static void main(String[] args) {
+        DoublyLinkedList dl = new DoublyLinkedList();
+        dl.add("A"); dl.add("B"); dl.add("C");
+        dl.insert(1, "X");                 // A X B C
+        dl.set(2, "Y");                    // A X Y C
+        dl.remove(0);                      // X Y C
+        for (int i = 0; i < dl.size(); i++) System.out.print(dl.get(i) + " ");
+        System.out.println();
+    }
+
+*Run: 
+- javac DoublyLinkedList.java
+- java  DoublyLinkedList
+----------------------------------------------------------------------------------------------------------------
+### CircularLinkedList Implementation
+Singly linked list whose tail points back to the head, like a ring. maintains only a tail pointer.
+
+*Complexity:
+- add(enqueue) -----> time: O(1)
+- remove(dequeue) -----> time: O(1)
+- rotate ----> time: O(1)
+
+-Storage: O(n), which is the nodes.
+
+*Usage: 
+public static void main(String[] args) {
+        CircularLinkedList cl = new CircularLinkedList();
+        cl.add(1); cl.add(2); cl.add(3);
+        System.out.println(cl.front());   // 1
+        cl.rotate();                      // head becomes 2
+        System.out.println(cl.front());   // 2
+        System.out.println(cl.remove());  // 2
+        cl.rotate();
+        while (!cl.isEmpty()) System.out.print(cl.remove() + " "); // 3 1
+        System.out.println();
+    }
+
+*Run: 
+- javac CircularLinkedList.java
+- java  CircularLinkedList
+----------------------------------------------------------------------------------------------------------------
+*Run all demos: 
+- javac *.java
+- java DynamicArray
+- java SinglyLinkedList
+- java ArrayStack
+- java LinkedStack
+- java ArrayQueue
+- java LinkedQueue
 ----------------------------------------------------------------------------------------------------------------
