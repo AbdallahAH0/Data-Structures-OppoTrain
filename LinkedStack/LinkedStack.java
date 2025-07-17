@@ -1,14 +1,14 @@
 package LinkedStack;
 public class LinkedStack {
 
-    private static class Node {
+    private static class Node { //single stack node
         Object v;
         Node n;
         Node(Object v, Node n) 
         { this.v = v; this.n = n; }
     }
 
-    private Node head;
+    private Node head; //top of stack 
     private int size;
 
     public LinkedStack() {
@@ -20,7 +20,7 @@ public class LinkedStack {
     public boolean isEmpty() { return size == 0; }
 
     public void push(Object v) {
-        head = new Node(v, head);
+        head = new Node(v, head); //link new node before currnet head 
         size++;
     }
 
@@ -32,7 +32,7 @@ public class LinkedStack {
     public Object pop() {
         if (isEmpty()) throw new IllegalStateException();
         Object v = head.v;
-        head = head.n;
+        head = head.n; //move head down
         size--;
         return v;
     }
