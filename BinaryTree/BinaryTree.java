@@ -92,5 +92,6 @@ public class BinaryTree {
 
         System.out.println("Tree size = " + t.size());  // 5 
         System.out.println("Is empty? " + t.isEmpty()); // false
+        System.out.println("test2? " + t.isEmpty()); // false
     }
 }
