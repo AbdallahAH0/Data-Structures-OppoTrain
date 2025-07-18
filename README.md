@@ -1,6 +1,6 @@
 Java Data‑Structure Implementations: 
 -------------------------------------------
-The reposority contains 8 main data structures written in Java: 
+The reposority contains 11 main data structures written in Java: 
 1. Dynamic Array
 2. SinglyLinkedList
 3. ArrayStack
@@ -9,6 +9,9 @@ The reposority contains 8 main data structures written in Java:
 6. LinkedQueue
 7. DoublyLinkedList
 8. CircularLinkedList
+9. java BinaryTree
+10. java BinarySearchTree
+11. java TreeTraversals
 
 each section will contain the implemenation and the run(Test).
 ----------------------------------------------------------------------------------------------------------------
@@ -25,7 +28,7 @@ the dynamic array is resizble array that can extened and shrink, meaning in can 
 - total storage: O(n)
 
 *Usage example:
- DynamicArray <String> a = new DynamicArray <>();
+ - DynamicArray <String> a = new DynamicArray <>();
         a.add("Abdallah");
         a.add("Kareem");
         a.addpos(1, "Taha");
@@ -223,6 +226,104 @@ public static void main(String[] args) {
 - javac CircularLinkedList.java
 - java  CircularLinkedList
 ----------------------------------------------------------------------------------------------------------------
+### BinaryTree Implementation
+Simple binary tree that fills level‑by‑level (like a heap). it inserts in breadth‑first order to keep the tree complete.
+
+*Complexity: 
+- add ---> O(n), in worst case (because must scan)
+- Storage ---> O(n), which is the nodes. 
+
+*Usage: 
+public static void main(String[] args) {
+        BinaryTree t = new BinaryTree();
+
+        t.add("A");
+        t.add("B");
+        t.add("C");
+        t.add("D");
+        t.add("E");
+
+        System.out.println("Tree size = " + t.size());  // 5 
+        System.out.println("Is empty? " + t.isEmpty()); // false
+    }
+
+*Run:
+- javac BinaryTree.java
+- java BinaryTree
+----------------------------------------------------------------------------------------------------------------
+### BinarySearchTree Implementation
+Ordered binary search tree (BST) with iterative add, contains, min, and max operations.
+
+*Complexity:
+- add ---> average case can cost O(log n), while the worst case can cost O(n)
+- contains ---> average case can cost O(log n), while the worst case can cost O(n)
+- min/max ---> average case can cost O(log n), while the worst case can cost O(n)
+- Storage: O(n), which is the nodes.
+
+*Usage:
+public static void main(String[] args) {
+        BinarySearchTree t = new BinarySearchTree();
+        t.add(50); 
+        t.add(30);
+        t.add(70);
+        t.add(20);
+        t.add(40);
+        t.add(60); 
+        t.add(80);
+        System.out.println("size=" + t.size());
+        System.out.println("min=" + t.min());
+        System.out.println("max=" + t.max());
+        System.out.println("contains 60? " + t.contains(60));
+        System.out.println("contains 25? " + t.contains(25));
+    }
+
+*Run:
+- javac BinarySearchTree.java
+- java BinarySearchTree
+----------------------------------------------------------------------------------------------------------------
+### Tree Traversals Implementation
+static methods for preorder, inorder, and postorder depth‑first traversals over any binary tree node.
+
+*Complexity:
+- preorder ---> O(n), space is according to recursion stack
+- inorder ---> O(n), space is according to recursion stack
+- postorder ---> O(n),  space is according to recursion stack
+
+*Usage: 
+private static Node sampleTree() {
+        Node a = new Node("A");
+        Node b = new Node("B");
+        Node c = new Node("C");
+        Node d = new Node("D");
+        Node e = new Node("E");
+        a.left  = b;
+        a.right = c;
+        b.left  = d;
+        b.right = e;   
+        return a;      
+    }
+
+    public static void main(String[] args) {
+
+        Node root = sampleTree();
+
+        System.out.print("Preorder  : ");
+        preorder(root);
+        System.out.println();
+
+        System.out.print("Inorder   : ");
+        inorder(root);
+        System.out.println();
+
+        System.out.print("Postorder : ");
+        postorder(root);
+        System.out.println();
+    }
+
+*Run:
+- javac BinarySearchTree.java
+- java BinarySearchTree
+----------------------------------------------------------------------------------------------------------------
 *Run all demos: 
 - javac *.java
 - java DynamicArray
@@ -231,4 +332,7 @@ public static void main(String[] args) {
 - java LinkedStack
 - java ArrayQueue
 - java LinkedQueue
+- java BinaryTree
+- java BinarySearchTree
+- java TreeTraversals
 ----------------------------------------------------------------------------------------------------------------
