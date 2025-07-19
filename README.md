@@ -1,6 +1,6 @@
 Java Data‑Structure Implementations: 
 -------------------------------------------
-The reposority contains 11 main data structures written in Java: 
+The reposority contains 14 main data structures written in Java: 
 1. Dynamic Array
 2. SinglyLinkedList
 3. ArrayStack
@@ -12,8 +12,11 @@ The reposority contains 11 main data structures written in Java:
 9. java BinaryTree
 10. java BinarySearchTree
 11. java TreeTraversals
+12. java MinHeap
+13. java Graph
+14. java HashTable
 
-each section will contain the implemenation and the run(Test).
+each section will contain the implemenation, Time Complexity, Usage and the run.
 ----------------------------------------------------------------------------------------------------------------
 ### Dynamic Array Implementation
 the dynamic array is resizble array that can extened and shrink, meaning in can automatically grow when adding above the capacity, also it offers constant time access like a normal java array. 
@@ -40,7 +43,6 @@ the dynamic array is resizble array that can extened and shrink, meaning in can 
         System.out.println();
 
 *Run: 
-
 - javac DynamicArray.java
 - java  DynamicArray
 ----------------------------------------------------------------------------------------------------------------
@@ -324,6 +326,98 @@ private static Node sampleTree() {
 - javac BinarySearchTree.java
 - java BinarySearchTree
 ----------------------------------------------------------------------------------------------------------------
+### HashTable Implementation
+Key → value map using an array of buckets. Each bucket holds a linked list, so that collisions are resolved by chaining entries.
+
+*Complexity: 
+- put/get/remove ---> in average it's O(1), in the worst cases O(n)
+
+*Space: O(n), number of entries.
+
+*Usage:
+public static void main(String[] args) { //Testing
+
+        HashTable ht = new HashTable();
+
+        ht.put("A", 1);
+        ht.put("B", 2);
+        ht.put("C", 3);
+
+        System.out.println(ht.get("B"));  // 2
+
+        ht.put("B", 22);                  // update
+        System.out.println(ht.get("B"));  // 22
+
+        ht.remove("A");
+        System.out.println(ht.get("A"));  // null
+
+        for (int i = 0; i < 10; i++) {
+            ht.put("key" + i, i);
+        }
+
+        System.out.println("size=" + ht.size);  // 12
+    }
+
+*Run: 
+- javac HashTable.java
+- java HashTable
+----------------------------------------------------------------------------------------------------------------
+### MinHeap Implementation
+Binary heap stored in an array, the most operation used and the power of the minheap is peek returns the smallest element.
+
+*Complexity: 
+- add(push) ---> O(log n)
+- poll (pop) ---> O(log n)
+- peek ---> O(1)
+
+-Storage: O(n), the backing array.
+
+*Usage: 
+public static void main(String[] args) {
+        MinHeap<Integer> h = new MinHeap<>();
+        h.add(5);
+        h.add(3);
+        h.add(8);
+        h.add(1);
+        h.add(4);
+
+        System.out.println(h.peek());   // 1
+        while (!h.isEmpty()) System.out.print(h.poll() + " "); // 1 3 4 5 8
+        System.out.println();
+    }
+
+*Run: 
+- javac MinHeap.java
+- java MinHeap
+----------------------------------------------------------------------------------------------------------------
+### Basic Graph Implementation
+Adjacency‑list graph using Map<V List<V>>. Supports directed or undirected edges plus BFS and DFS traversals.
+
+*Complexity:
+- addVertex ---> O(1)
+- addEdge ---> O(1)
+- neighbors ---> O(k), where k is the dgree 
+- BFS and DFS ---> O(V+E)
+
+-Storage ---> O(V+E)
+
+*Usage:
+public static void main(String[] args) {
+        Graph g = new Graph();
+        g.addEdge("A", "B", true);
+        g.addEdge("A", "C", true);
+        g.addEdge("B", "D", true);
+        g.addEdge("C", "D", true);
+        g.addEdge("D", "E", true);
+        System.out.println("Neighbors of A: " + g.neighbors("A"));
+        System.out.println("BFS from A     : " + g.bfs("A"));
+        System.out.println("DFS from A     : " + g.dfs("A"));
+    }
+
+*Run: 
+- javac Graph.java
+- java Graph
+----------------------------------------------------------------------------------------------------------------
 *Run all demos: 
 - javac *.java
 - java DynamicArray
@@ -335,4 +429,7 @@ private static Node sampleTree() {
 - java BinaryTree
 - java BinarySearchTree
 - java TreeTraversals
+- java MinHeap
+- java Graph
+- java HashTable
 ----------------------------------------------------------------------------------------------------------------
