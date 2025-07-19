@@ -16,11 +16,7 @@ The reposority contains 14 main data structures written in Java:
 13. java Graph
 14. java HashTable
 
-<<<<<<< Updated upstream
 each section will contain the implemenation, Time Complexity, Usage and the run.
-=======
-each section will contain the implemenation, Time Complexity, Usage and the run().
->>>>>>> Stashed changes
 ----------------------------------------------------------------------------------------------------------------
 ### Dynamic Array Implementation
 the dynamic array is resizble array that can extened and shrink, meaning in can automatically grow when adding above the capacity, also it offers constant time access like a normal java array. 
