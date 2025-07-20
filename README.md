@@ -9,12 +9,12 @@ The reposority contains 14 main data structures written in Java:
 6. LinkedQueue
 7. DoublyLinkedList
 8. CircularLinkedList
-9. java BinaryTree
-10. java BinarySearchTree
-11. java TreeTraversals
-12. java MinHeap
-13. java Graph
-14. java HashTable
+9.  BinaryTree
+10. BinarySearchTree
+11. TreeTraversals
+12. MinHeap
+13. Graph
+14. HashTable
 
 each section will contain the implemenation, Time Complexity, Usage and the run.
 ----------------------------------------------------------------------------------------------------------------
@@ -418,7 +418,89 @@ public static void main(String[] args) {
 - javac Graph.java
 - java Graph
 ----------------------------------------------------------------------------------------------------------------
+### BasicTrie Implementation
+Prefix tree storing lowercase a–z words; supports insert, exact lookup contains, and prefix check startsWith.
+
+*Complexity:
+- insert ---> O(L)
+- contains ---> O(L)
+- startsWith ---> O(P)
+- Storage ---> O(total chars)
+ 
+ *Usage:
+ public static void main(String[] args) {
+        Trie t = new Trie();
+        t.insert("apple");
+        t.insert("app");
+        t.insert("apt");
+        t.insert("bat");
+
+        System.out.println(t.contains("app"));     // true
+        System.out.println(t.contains("ap"));      // false
+        System.out.println(t.startsWith("ap"));    // true
+        System.out.println(t.startsWith("ba"));    // true
+        System.out.println(t.startsWith("cat"));   // false
+    }
+
+ *Run: 
+ - javac Trie.java
+ - java Trie
+ ---------------------------------------------------------------------------------------------------------------
+ ### Union‑Find (Disjoint Set) Implementation
+Efficient data structure for keeping track of disjoint groups; operations union (merge) and find (set id) use path compression and union‑by‑rank.
+
+*Complexity: 
+- union ---> O(α(n))
+- find ---> O(α(n))
+- Storage ---> O(n), (parent,rank) 
+
+*Usage:
+public static void main(String[] args) {
+        UnionFind uf = new UnionFind(10);
+        uf.union(0, 1);
+        uf.union(1, 2);
+        uf.union(3, 4);
+        System.out.println(uf.find(2) == uf.find(0)); //true
+        System.out.println(uf.find(2) == uf.find(3)); //false 
+        System.out.println("sets = " + uf.setCount()); //8
+
+        UnionFind ufObj = new UnionFind(new Object[]{"A","B","C","D"});
+        ufObj.union("A", "B");
+        System.out.println(ufObj.connected("A", "C")); //false 
+        ufObj.union("B", "C");
+        System.out.println(ufObj.connected("A", "C")); //true 
+    }
+
+*Run:
+- javac UnionFind.java
+- java UnionFind
+---------------------------------------------------------------------------------------------------------------
+### Graph Traversal Implementation
+tatic generic methods for BFS and DFS over any Map<V, List<V>> adjacency list. Returns visit order.
+
+*Complexity: 
+- BFS and DFS ---> O(|V| + |E|)
+-Storage: frontier + seen
+
+*Usage: 
+public static void main(String[] args) {
+        Map<String, List<String>> g = new HashMap<>();
+        g.put("A", new ArrayList<>(Arrays.asList("B", "C")));
+        g.put("B", new ArrayList<>(Arrays.asList("D")));
+        g.put("C", new ArrayList<>(Arrays.asList("D")));
+        g.put("D", new ArrayList<>(Arrays.asList("E")));
+        g.put("E", new ArrayList<>());
+
+        System.out.println("BFS from A: " + bfs(g, "A")); // [A, B, C, D, E]
+        System.out.println("DFS from A: " + dfs(g, "A")); // e.g. [A, B, D, E, C]
+    }
+
+*Run: 
+- javac GraphTraversal.java
+- java GraphTraversal
+----------------------------------------------------------------------------------------------------------------
 *Run all demos: 
+
 - javac *.java
 - java DynamicArray
 - java SinglyLinkedList
@@ -432,4 +514,7 @@ public static void main(String[] args) {
 - java MinHeap
 - java Graph
 - java HashTable
+- java UnionFind
+- java GraphTraversal
+- java Trie
 ----------------------------------------------------------------------------------------------------------------
